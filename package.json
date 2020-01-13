@@ -1,0 +1,32 @@
+{
+  "name": "@devmarcos/mj-framework",
+  "version": "1.0.0",
+  "description": "A CLI to bootstrap projects with typscript",
+  "main": "src/index.js",
+  "bin": {
+    "@devmarcos/mj": "bin/mj",
+    "mj": "bin/mj"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cli",
+    "mj Framework",
+    "mjFramework"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "arg": "^4.1.2",
+    "chalk": "^3.0.0",
+    "esm": "^3.2.25",
+    "inquirer": "^7.0.3",
+    "listr": "^0.14.3",
+    "ncp": "^2.0.0",
+    "pkg-install": "^1.0.0"
+  }
+}
