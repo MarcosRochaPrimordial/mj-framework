@@ -1,5 +1,5 @@
 {
-  "name": "@devmarcos/mj-framework",
+  "name": "mj-framework",
   "version": "1.0.0",
   "description": "A CLI to bootstrap projects with typscript",
   "main": "src/index.js",
