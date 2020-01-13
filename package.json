@@ -13,12 +13,16 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MarcosRochaPrimordial/mj-framework.git"
+  },
   "keywords": [
     "cli",
     "mj Framework",
     "mjFramework"
   ],
-  "author": "",
+  "author": "Marcos A. Rocha",
   "license": "ISC",
   "dependencies": {
     "arg": "^4.1.2",
