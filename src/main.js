@@ -80,6 +80,34 @@ async function installPackageJson(options) {
     "license": "ISC",
     "dependencies": {
         "bcryptjs": "^2.4.3",
+        "decorated-router": "^1.3.7",
+        "dotenv": "^8.2.0",
+        "jsonwebtoken": "^8.5.1"
+    },
+    "devDependencies": {
+        "@types/bcryptjs": "^2.4.2",
+        "@types/node": "^13.1.1",
+        "typescript": "^3.7.4"
+    }
+}`)
+}
+
+async function installPackageJsonMongo(options) {
+    return writeFile(`${options.targetDirectory}/package.json`, `
+{
+    "name": "${options.nameAction}",
+    "version": "1.0.0",
+    "description": "",
+    "main": "src/Loader.ts",
+    "scripts": {
+        "start": "",
+        "build": "tsc"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
         "decorated-mongo": "^1.1.4",
         "decorated-router": "^1.3.7",
         "dotenv": "^8.2.0",
@@ -152,7 +180,7 @@ export async function createProject(options) {
         },
         {
             title: 'Installing project',
-            task: () => installPackageJson(options)
+            task: () => options.mongo ? installPackageJsonMongo(options) : installPackageJson(options)
         },
         {
             title: 'Installing dependencies',
