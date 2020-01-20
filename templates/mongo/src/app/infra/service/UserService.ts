@@ -1,11 +1,11 @@
 import { Injectable } from 'decorated-router';
 import { MongoCRUD, Fndr } from 'decorated-mongo';
 
-import { UserDTO } from './../../domain/dto/UserDTO';
-import { User } from './../../domain/entity/User';
-import { Encrypt } from './../configs/Encrypt';
-import { ResultNotification } from './../notification/ResultNotification';
-import { Security } from './../configs/Security';
+import { UserDTO } from '../../domain/dto/UserDTO';
+import { User } from '../../domain/entity/User';
+import { Encrypt } from '../configs/Encrypt';
+import { ResultNotification } from '../../domain/notification/ResultNotification';
+import { Security } from '../configs/Security';
 
 @Injectable()
 export class UserService {

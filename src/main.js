@@ -64,65 +64,8 @@ export class ${options.nameActionCapitalize}Service {
 `)
 }
 
-function addNewControllerToLoader(options) {
-    const loader = `${options.targetDirectory}/src/Loader.ts`;
-    const data = fs.readFileSync(loader, 'utf-8');
-    const dataSplited = data.split('controllers: [');
-        const newLoader = `import { ${options.nameActionCapitalize}Controller } from './app/application/controller/${options.nameActionCapitalize}Controller'
-${dataSplited[0]}controllers: [
-        ${options.nameActionCapitalize}Controller,${dataSplited[1]}`;
-    
-    return writeFile(`${options.targetDirectory}/src/Loader.ts`, newLoader);
-}
-
-export async function addController(options) {
-    options = setTargetDirectoryToOptions(options);
-    options = capitalizeFirstLetterOptions(options);
-    const tasks = new Listr([
-        {
-            title: 'Creating new controller',
-            task: () => createNewController(options)
-        },
-        {
-            title: 'Creating new service',
-            task: () => createNewService(options)
-        },
-        {
-            title: 'Insert into Loader',
-            task: () => addNewControllerToLoader(options)
-        }
-    ]);
-
-    await tasks.run();
-
-    console.log('Ready');
-    return true;
-}
-
-export async function createProject(options) {
-    options = setTargetDirectoryToOptions(options);
-    options.targetDirectory = `${options.targetDirectory}/${options.nameAction}`;
-
-    const templateDir = path.resolve(
-        __dirname,
-        '../templates'
-    );
-    options.templateDirectory = templateDir;
-    try {
-        await access(templateDir, fs.constants.R_OK);
-    } catch(err) {
-        console.error('%s Invalid template directory', chalk.red.bold('ERROR'));
-        process.exit(1);
-    }
-
-    const tasks = new Listr([
-        {
-            title: 'Copy project files',
-            task: () => copyTemplateFiles(options)
-        },
-        {
-            title: 'Installing project',
-            task: () => writeFile(`${options.targetDirectory}/package.json`, `
+async function installPackageJson(options) {
+    return writeFile(`${options.targetDirectory}/package.json`, `
 {
     "name": "${options.nameAction}",
     "version": "1.0.0",
@@ -145,10 +88,71 @@ export async function createProject(options) {
     "devDependencies": {
         "@types/bcryptjs": "^2.4.2",
         "@types/node": "^13.1.1",
-        "ts-node": "^8.5.4",
         "typescript": "^3.7.4"
     }
 }`)
+}
+
+async function addNewControllerToLoader(options) {
+    const loader = `${options.targetDirectory}/src/Loader.ts`;
+    const data = await fs.readFileSync(loader, 'utf-8');
+    const dataSplited = data.split('controllers: [');
+        const newLoader = `import { ${options.nameActionCapitalize}Controller } from './app/application/controller/${options.nameActionCapitalize}Controller'
+${dataSplited[0]}controllers: [
+        ${options.nameActionCapitalize}Controller,${dataSplited[1]}`;
+    
+    return writeFile(`${options.targetDirectory}/src/Loader.ts`, newLoader);
+}
+
+export async function addController(options) {
+    options = setTargetDirectoryToOptions(options);
+    options = capitalizeFirstLetterOptions(options);
+    const tasks = new Listr([
+        {
+            title: 'Creating new controller',
+            task: () => createNewController(options)
+        },
+        {
+            title: 'Creating new service',
+            task: () => createNewService(options)
+        },
+        {
+            title: 'Inserting into Loader',
+            task: () => addNewControllerToLoader(options)
+        }
+    ]);
+
+    await tasks.run();
+
+    console.log('%s New controller added', chalk.green.bold('DONE!'));
+    return true;
+}
+
+export async function createProject(options) {
+    options = setTargetDirectoryToOptions(options);
+    options.targetDirectory = `${options.targetDirectory}/${options.nameAction}`;
+
+    const templDir = options.mongo ? '../templates/mongo' : '../templates/standart';
+    const templateDir = path.resolve(
+        __dirname,
+        templDir
+    );
+    options.templateDirectory = templateDir;
+    try {
+        await access(templateDir, fs.constants.R_OK);
+    } catch(err) {
+        console.error('%s Invalid template directory', chalk.red.bold('ERROR'));
+        process.exit(1);
+    }
+
+    const tasks = new Listr([
+        {
+            title: 'Copying project files',
+            task: () => copyTemplateFiles(options)
+        },
+        {
+            title: 'Installing project',
+            task: () => installPackageJson(options)
         },
         {
             title: 'Installing dependencies',
@@ -160,6 +164,6 @@ export async function createProject(options) {
 
     await tasks.run();
 
-    console.log('%s Project ready', chalk.green.bold('DONE'));
+    console.log('%s Project ready', chalk.green.bold('DONE!'));
     return true;
 }

@@ -8,7 +8,9 @@ function parseArgumentsIntoOptions(rawArgs) {
     const args = arg(
         {
             '--version': Boolean,
-            '-v': '--version'
+            '-v': '--version',
+            '--mongo': Boolean,
+            '-m': '--mongo'
         },
         {
             argv: rawArgs.slice(2),
@@ -16,6 +18,7 @@ function parseArgumentsIntoOptions(rawArgs) {
     );
     return {
         version: args['-v'] || args['--version'] || false,
+        mongo: args['--mongo'] || args['-m'] || false,
         actions: args._[0],
         nameAction: args._[1]
     }
@@ -59,34 +62,17 @@ MJ-Framework@${packageJsonInfo.version}
 export async function cli(args) {
     let options = parseArgumentsIntoOptions(args);
     if (options.version) {
-//         console.log(
-// `MJ-Framework is in the version: ${packageJsonInfo.version}
-
-// github: https://github.com/MarcosRochaPrimordial/mj-framework
-// `);
-
 console.log('%s %s',
 chalk.yellow.bold(
 `
-                      MJ-Framework is in the version: ${packageJsonInfo.version}`),
+                      MJ-Framework version: ${packageJsonInfo.version}`),
 chalk.magenta.bold(
 `
-                                 _______ _________
-                                (       )\\__    _/
-                                | () () |   )  (  
-                                | || || |   |  |  
-                                | |(_)| |   |  |  
-                                | |   | |   |  |  
-                                | )   ( ||\\_)  )  
-                                |/     \\|(____/
- _______  _______  _______  _______  _______           _______  _______  _       
-(  ____ \\(  ____ )(  ___  )(       )(  ____ \\|\\     /|(  ___  )(  ____ )| \\    /\\
-| (    \\/| (    )|| (   ) || () () || (    \\/| )   ( || (   ) || (    )||  \\  / /
-| (__    | (____)|| (___) || || || || (__    | | _ | || |   | || (____)||  (_/ / 
-|  __)   |     __)|  ___  || |(_)| ||  __)   | |( )| || |   | ||     __)|   _ (  
-| (      | (\\ (   | (   ) || |   | || (      | || || || |   | || (\\ (   |  ( \\ \\ 
-| )      | ) \\ \\__| )   ( || )   ( || (____/\\| () () || (___) || ) \\ \\__|  /  \\ \\
-|/       |/   \\__/|/     \\||/     \\|(_______/(_______)(_______)|/   \\__/|_/    \\/
+• ▌ ▄ ·.  ▐▄▄▄    ·▄▄▄▄▄▄   ▄▄▄· • ▌ ▄ ·. ▄▄▄ .▄▄▌ ▐ ▄▌      ▄▄▄  ▄ •▄ 
+·██ ▐███▪  ·██    ▐▄▄·▀▄ █·▐█ ▀█ ·██ ▐███▪▀▄.▀·██· █▌▐█▪     ▀▄ █·█▌▄▌▪
+▐█ ▌▐▌▐█·▪▄ ██    ██▪ ▐▀▀▄ ▄█▀▀█ ▐█ ▌▐▌▐█·▐▀▀▪▄██▪▐█▐▐▌ ▄█▀▄ ▐▀▀▄ ▐▀▀▄·
+██ ██▌▐█▌▐▌▐█▌    ██▌.▐█•█▌▐█ ▪▐▌██ ██▌▐█▌▐█▄▄▌▐█▌██▐█▌▐█▌.▐▌▐█•█▌▐█.█▌
+▀▀  █▪▀▀▀ ▀▀▀•    ▀▀▀ .▀  ▀ ▀  ▀ ▀▀  █▪▀▀▀ ▀▀▀  ▀▀▀▀ ▀▪ ▀█▄▀▪.▀  ▀·▀  ▀
 `
 ), `
 

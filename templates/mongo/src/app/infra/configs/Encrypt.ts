@@ -2,7 +2,7 @@ import * as bcrypt from 'bcryptjs';
 
 export class Encrypt {
     public static genHash(word: string): string {
-        return bcrypt.hashSync(word, 10);
+        return bcrypt.hashSync(word, this.genSalt(10));
     }
 
     public static compareHash(word1: string, word2: string): boolean {

@@ -1,6 +1,6 @@
 {
   "name": "mj-framework",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A CLI to bootstrap projects with typscript",
   "main": "src/index.js",
   "bin": {
