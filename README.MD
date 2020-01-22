@@ -12,8 +12,7 @@ npm install -g mj-framework
 
 MJ-Framework uses two packages:
 
-[decorated-router](https://www.npmjs.com/package/decorated-router)
-
+[decorated-router](https://www.npmjs.com/package/decorated-router) and 
 [decorated-mongo](https://www.npmjs.com/package/decorated-mongo)
 
 Please, read both documentation.
