@@ -1,4 +1,4 @@
-import { Controller, Post, RequestBody } from 'decorated-router';
+import { Controller, Post, Body } from 'decorated-router';
 
 import { UserService } from '../infra/service/UserService';
 import { UserDTO } from '../domain/dto/UserDTO';
@@ -15,12 +15,12 @@ export class LoginController {
     ) { }
 
     @Post()
-    doLogin(@RequestBody() userDto: UserDTO) {
+    doLogin(@Body() userDto: UserDTO) {
         return this.userService.doLogin(userDto);
     }
     
     @Post('/signup')
-    signUp(@RequestBody() userDto: UserDTO) {
+    signUp(@Body() userDto: UserDTO) {
         return this.userService.signUp(userDto);
     }
 }

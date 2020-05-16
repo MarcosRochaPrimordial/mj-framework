@@ -80,7 +80,7 @@ async function installPackageJson(options) {
     "license": "ISC",
     "dependencies": {
         "bcryptjs": "^2.4.3",
-        "decorated-router": "^1.3.7",
+        "decorated-router": "^1.3.9",
         "dotenv": "^8.2.0",
         "jsonwebtoken": "^8.5.1"
     },
@@ -109,7 +109,7 @@ async function installPackageJsonMongo(options) {
     "dependencies": {
         "bcryptjs": "^2.4.3",
         "decorated-mongo": "^1.1.4",
-        "decorated-router": "^1.3.7",
+        "decorated-router": "^1.3.9",
         "dotenv": "^8.2.0",
         "jsonwebtoken": "^8.5.1"
     },

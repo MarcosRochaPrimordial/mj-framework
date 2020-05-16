@@ -1,8 +1,8 @@
-import { LoadApp, METHOD, HEADER } from 'decorated-router';
+import { App, METHOD, HEADER } from 'decorated-router';
 import { LoginController } from './app/controller/LoginController';
 require('dotenv').config();
 
-@LoadApp({
+@App({
     controllers: [
         LoginController
     ],
