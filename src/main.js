@@ -54,7 +54,7 @@ export class ${options.nameActionCapitalize}Controller {
 }
 
 async function createNewService(options) {
-    return writeFile(`${options.targetDirectory}/src/app/infra/service/${options.nameActionCapitalize}Service.ts`,
+    return writeFile(`${options.targetDirectory}/src/app/domain/service/${options.nameActionCapitalize}Service.ts`,
     `import { Injectable } from 'decorated-router';
 
 @Injectable()
@@ -73,6 +73,7 @@ async function installPackageJson(options) {
     "main": "src/Loader.ts",
     "scripts": {
         "start": "",
+        "dev": "nodemon",
         "build": "tsc"
     },
     "keywords": [],
@@ -81,13 +82,23 @@ async function installPackageJson(options) {
     "dependencies": {
         "bcryptjs": "^2.4.3",
         "decorated-router": "^1.3.9",
-        "dotenv": "^8.2.0",
         "jsonwebtoken": "^8.5.1"
     },
     "devDependencies": {
         "@types/bcryptjs": "^2.4.2",
         "@types/node": "^13.1.1",
+        "nodemon": "^2.0.4",
+        "ts-node": "^8.10.1",
         "typescript": "^3.7.4"
+    },
+    "nodemonConfig": {
+        "watch": [
+            "src"
+        ],
+        "ext": "ts",
+        "execMap": {
+            "ts": "ts-node"
+        }
     }
 }`)
 }
@@ -101,6 +112,7 @@ async function installPackageJsonMongo(options) {
     "main": "src/Loader.ts",
     "scripts": {
         "start": "",
+        "dev": "nodemon",
         "build": "tsc"
     },
     "keywords": [],
@@ -110,13 +122,23 @@ async function installPackageJsonMongo(options) {
         "bcryptjs": "^2.4.3",
         "decorated-mongo": "^1.1.4",
         "decorated-router": "^1.3.9",
-        "dotenv": "^8.2.0",
         "jsonwebtoken": "^8.5.1"
     },
     "devDependencies": {
         "@types/bcryptjs": "^2.4.2",
         "@types/node": "^13.1.1",
+        "nodemon": "^2.0.4",
+        "ts-node": "^8.10.1",
         "typescript": "^3.7.4"
+    },
+    "nodemonConfig": {
+        "watch": [
+            "src"
+        ],
+        "ext": "ts",
+        "execMap": {
+            "ts": "ts-node"
+        }
     }
 }`)
 }

@@ -1,18 +1,29 @@
-export class Notification {
+export class Notification<T> {
+    private result: T = null;
     private success: boolean;
     private errors: string[] = [];
 
-    public setSuccess(success: boolean) {
+    public Success(success: boolean = true): Notification<T> {
         this.success = success;
+        return this;
     }
 
     public getSuccess(): boolean {
         return this.success;
     }
 
-    public addError(error: string) {
+    public setResult(result: T): Notification<T> {
+        this.result = result;
+        return this.Success();
+    }
+
+    public getResult(): T {
+        return this.result;
+    }
+
+    public addError(error: string | any): Notification<T> {
         this.errors.push(error);
-        this.setSuccess(false);
+        return this.Success(false);
     }
 
     public clearErrors() {

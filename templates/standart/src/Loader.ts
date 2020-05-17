@@ -1,6 +1,5 @@
 import { App, METHOD, HEADER } from 'decorated-router';
-import { LoginController } from './app/controller/LoginController';
-require('dotenv').config();
+import { LoginController } from './app/application/controller/LoginController';
 
 @App({
     controllers: [

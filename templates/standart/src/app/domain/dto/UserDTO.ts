@@ -1,11 +1,11 @@
 import { DataObject } from 'decorated-router';
-import { Mapper } from '../../../utils/Mapper';
-import { User } from '../entity/User';
+import { Mapper } from './../utils/Mapper';
+import { User } from './../entity/User';
 
 @DataObject()
 export class UserDTO {
 
-    id: string;
+    user_id: string;
     email: string;
     password: string;
     token: string;
@@ -15,7 +15,9 @@ export class UserDTO {
             return null;
         }
 
-        return Mapper.map<UserDTO>(entity, new UserDTO());
+        const user = Mapper.map<UserDTO>(entity, new UserDTO());
+        delete user.password;
+        return user;
     }
 
     public toEntity(): User {
