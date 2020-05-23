@@ -1,7 +1,7 @@
 import { Controller, Post, Body } from 'decorated-router';
 
 import { UserService } from './../../domain/service/UserService';
-import { UserDTO } from './../../domain/dto/UserDTO';
+import { UserDTO } from './../dto/UserDTO';
 
 @Controller({
     url: '/login',

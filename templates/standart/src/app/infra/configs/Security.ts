@@ -1,5 +1,5 @@
 import * as jwt from 'jsonwebtoken';
-import { environment } from './../../../../environment';
+import { environment } from './../../../environment';
 
 export class Security {
     public static sign(word: string, expiresIn: number): string {

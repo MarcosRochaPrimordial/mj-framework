@@ -1,6 +1,6 @@
 import { DataObject } from 'decorated-router';
-import { Mapper } from './../utils/Mapper';
-import { User } from './../entity/User';
+import { Mapper } from './../../domain/utils/Mapper';
+import { User } from './../../domain/entity/User';
 
 @DataObject()
 export class UserDTO {

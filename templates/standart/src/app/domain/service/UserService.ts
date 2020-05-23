@@ -1,9 +1,9 @@
 import { Injectable } from 'decorated-router';
 
-import { UserDTO } from './../dto/UserDTO';
+import { UserDTO } from './../../application/dto/UserDTO';
 import { User } from './../entity/User';
 import { Encrypt } from './../../infra/configs/Encrypt';
-import { Notification } from './../notification/Notification';
+import { Notification } from './../../application/notification/Notification';
 import { Security } from './../../infra/configs/Security';
 import { UserRepository } from './../../infra/repository/UserRepository';
 
